@@ -14,7 +14,12 @@ st.set_page_config(
 def load_model():
     return joblib.load("airbnb_final_pipeline_compressed.pkl")
 
-model = load_model()
+try:
+    model = load_model()
+    st.success("Model loaded successfully")
+except Exception as e:
+    st.error(f"Model loading error: {e}")
+    st.stop()
 
 # Title
 st.title("🏠 Airbnb Price Prediction")
